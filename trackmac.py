@@ -39,7 +39,7 @@ def friendly_duration(secs):
 	if hours > 0:   duration.append('%dh' % hours)
 	if minutes > 0: duration.append('%dm' % minutes)
 	if seconds > 0: duration.append('%ds' % seconds)
-	return ' '.join(duration)
+	return ''.join(duration)
 
 def gather_activities(samples):
 	# Skip past all samples older than 24 hours
@@ -90,7 +90,7 @@ def print_summary(samples):
 	keyboard_time = total_time - idle_time
 	print
 	print "Time spent at your computer: " + friendly_duration(keyboard_time)
-	print "Total time tracked: " + friendly_duration(keyboard_time)
+	print "Total time tracked: " + friendly_duration(total_time)
 	
 def run_profiler():
 	samples = []
