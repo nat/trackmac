@@ -21,13 +21,14 @@
 # screensaver delay to improve accuracy.
 #
 # It doesn't save the data, so if you kill the script it loses the
-# history.
+# history. You might want to kill it every day or so, so it doesn't
+# get too big (it keeps all the old samples around).
 
 import time, math, sys
 from AppKit import NSWorkspace
 from operator import itemgetter
 
-# Sample every 15 seconds
+# Sample every second
 sample_interval = 1
 idle_activities = ["loginwindow", "ScreenSaverEngine"]
 
@@ -79,7 +80,7 @@ def print_summary(samples):
 	sorted_activities.reverse()
 
 	for a in sorted_activities:
-		print friendly_duration(a[1]) + "\t\t" + a[0]
+		print friendly_duration(a[1]) + "\t" + str(a[1] * 100 / total_time) + "%\t" + a[0]
 	
 	if "idle" in activities:
 		idle_time = activities["idle"]
