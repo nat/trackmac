@@ -4,10 +4,8 @@
 #
 # A simple time tracker for Mac OS X by Nat Friedman (nat@nat.org).
 #
-# Run this script in a terminal. It detects idle time based on the
-# screensaver, so lower your screensaver delay to improve accuracy.
-#
-# It displays activity statistics from the last 24 hours, like this:
+# Run this script in a termina. It displays activity statistics 
+# from the last 24 hours, like this:
 #
 # 2m 55s        Google Chrome
 # 2m 51s        TextMate
@@ -17,6 +15,9 @@
 # Time spent at your computer: 7m 30s
 # Total time tracked: 7m 30s
 # 
+# It detects idle time based on the screensaver, so lower your 
+# screensaver delay to improve accuracy.
+#
 # It doesn't save the data, so if you kill the script it loses the
 # history.
 
@@ -66,7 +67,7 @@ def gather_activities(samples):
 
 def print_summary(samples):
 	sys.stdout.write("\033[2J\033[H")
-	if len(samples) < 2:
+	if len(samples) < 3:
 		print "Please wait, gathering data..."
 		return
 
