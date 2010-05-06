@@ -1,6 +1,8 @@
 # A simple time tracker for Mac OS X by Nat Friedman (nat@nat.org).
 #
-# Run this script in a termina. It displays activity statistics 
+# Written May 6, 2010 in Munich, while a soft rain fell.
+#
+# Run this script in a terminal. It displays activity statistics 
 # from the last 24 hours, like this:
 #
 # 2m 55s        Google Chrome
