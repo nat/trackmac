@@ -36,9 +36,21 @@ def friendly_duration(secs):
 	minutes, seconds = divmod(secs, 60)
 	hours, minutes = divmod(minutes, 60)
 	duration = []
-	if hours > 0:   duration.append('%dh' % hours)
-	if minutes > 0: duration.append('%dm' % minutes)
-	if seconds > 0: duration.append('%ds' % seconds)
+	if hours > 0:   
+		duration.append('%2dh' % hours)
+	else:
+		duration.append('   ')
+
+	if minutes > 0: 
+		duration.append('%2dm' % minutes)
+	else:
+		duration.append('   ')
+		
+	if seconds > 0: 
+		duration.append('%2ds' % seconds)
+	else:
+		duration.append('   ')
+		
 	return ''.join(duration)
 
 def gather_activities(samples):
@@ -80,7 +92,7 @@ def print_summary(samples):
 	sorted_activities.reverse()
 
 	for a in sorted_activities:
-		print friendly_duration(a[1]) + "\t" + str(a[1] * 100 / total_time) + "%\t" + a[0]
+		print friendly_duration(a[1]) + " " + ('%3d' % (a[1] * 100 / total_time)) + "%  " + a[0]
 	
 	if "idle" in activities:
 		idle_time = activities["idle"]
@@ -88,9 +100,12 @@ def print_summary(samples):
 		idle_time = 0
 
 	keyboard_time = total_time - idle_time
+
 	print
-	print "Time spent at your computer: " + friendly_duration(keyboard_time)
-	print "Total time tracked: " + friendly_duration(total_time)
+	print friendly_duration(keyboard_time) + " Sitting at the computer"
+	if (idle_time > 0):
+		print friendly_duration(idle_time) + " Doing something else"
+		print friendly_duration(total_time) + " Total"
 	
 def run_profiler():
 	samples = []
