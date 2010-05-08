@@ -9,13 +9,19 @@
 # Run this script in a terminal. It displays activity statistics 
 # from the last 24 hours, like this:
 #
-# 2m 55s        Google Chrome
-# 2m 51s        TextMate
-# 1m 7s         Terminal
-# 37s           Colloquy
-# 
-# Time spent at your computer: 7m 30s
-# Total time tracked: 7m 30s
+# 1h 8m57s  70%  Google Chrome
+#   14m17s  14%  Mail
+#    8m11s   8%  iChat
+#    3m16s   3%  Colloquy
+#    1m28s   1%  1Password
+#      43s   0%  Terminal
+#      12s   0%  TextMate
+#       4s   0%  Finder
+#       4s   0%  SecurityAgent
+#
+# 1h37m12s Sitting at the computer
+# 3h37m16s Doing something else
+# 5h14m28s Total
 # 
 # It detects idle time based on the screensaver, so lower your 
 # screensaver delay to improve accuracy.
@@ -91,16 +97,16 @@ def print_summary(samples):
 	sorted_activities = sorted(activities.items(), key=itemgetter(1))
 	sorted_activities.reverse()
 
-	for a in sorted_activities:
-		print friendly_duration(a[1]) + " " + ('%3d' % (a[1] * 100 / total_time)) + "%  " + a[0]
-	
 	if "idle" in activities:
 		idle_time = activities["idle"]
 	else:
 		idle_time = 0
-
 	keyboard_time = total_time - idle_time
 
+	for a in sorted_activities:
+		if a[0] != "idle":
+			print friendly_duration(a[1]) + " " + ('%3d' % (a[1] * 100 / keyboard_time)) + "%  " + a[0]
+	
 	print
 	print friendly_duration(keyboard_time) + " Sitting at the computer"
 	if (idle_time > 0):
