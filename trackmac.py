@@ -86,6 +86,9 @@ def gather_activities(samples):
 
 	return activities, total_time
 
+def sanitize_string(s):
+	return "".join([i if ord(i) < 128 else ' ' for i in s])
+
 def print_summary(samples):
 	sys.stdout.write("\033[2J\033[H")
 	if len(samples) < 3:
@@ -105,7 +108,7 @@ def print_summary(samples):
 
 	for a in sorted_activities:
 		if a[0] != "idle":
-			print friendly_duration(a[1]) + " " + ('%3d' % (a[1] * 100 / keyboard_time)) + "%  " + a[0]
+			print friendly_duration(a[1]) + " " + ('%3d' % (a[1] * 100 / keyboard_time)) + "%  " + sanitize_string(a[0])
 	
 	print
 	print friendly_duration(keyboard_time) + " Sitting at the computer"
