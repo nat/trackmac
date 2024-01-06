@@ -89,7 +89,7 @@ def gather_activities(samples):
 def print_summary(samples):
 	sys.stdout.write("\033[2J\033[H")
 	if len(samples) < 3:
-		print "Please wait, gathering data..."
+		print ("Please wait, gathering data...")
 		return
 
 	activities, total_time = gather_activities(samples)
@@ -105,13 +105,13 @@ def print_summary(samples):
 
 	for a in sorted_activities:
 		if a[0] != "idle":
-			print friendly_duration(a[1]) + " " + ('%3d' % (a[1] * 100 / keyboard_time)) + "%  " + a[0]
+			print (friendly_duration(a[1]) + " " + ('%3d' % (a[1] * 100 / keyboard_time)) + "%  " + a[0])
 	
 	print
-	print friendly_duration(keyboard_time) + " Sitting at the computer"
+	print (friendly_duration(keyboard_time) + " Sitting at the computer")
 	if (idle_time > 0):
-		print friendly_duration(idle_time) + " Doing something else"
-		print friendly_duration(total_time) + " Total"
+		print (friendly_duration(idle_time) + " Doing something else")
+		print (friendly_duration(total_time) + " Total")
 	
 def run_profiler():
 	samples = []
